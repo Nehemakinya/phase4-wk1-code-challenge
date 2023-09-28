@@ -31,7 +31,7 @@ pipenv install
 
 5. Configure the database URI in the app.py file:
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///RestaurantAPI.db'  # Update with your database URI
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///RestaurantAPI.db' 
 
 6. Initialize the database and apply migrations:
 
