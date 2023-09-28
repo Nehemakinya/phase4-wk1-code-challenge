@@ -1,4 +1,7 @@
+
 ## Restaurant and Pizza API
+
+**Description:**
 This is a simple Flask application for managing restaurants and pizzas. It provides a RESTful API for creating, retrieving, and deleting restaurants and pizzas, as well as creating restaurant-pizza combinations.
 
 # Getting Started
@@ -61,5 +64,5 @@ python seed.py
 # Acknowledgments
 This project was created as a simple example of building a RESTful API with Flask and SQLAlchemy.
 
-
-**Author:** Nehema Kinya.
+# Author 
+Nehema Kinya.
