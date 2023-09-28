@@ -14,7 +14,7 @@ SQLite or another supported database
 # Installation
 1. Clone this repository to your local machine:
 
-git clone https://github.com/Nehemakinya/restaurant-pizza-api.git
+git clone https://github.com/Nehemakinya/phase4-wk1-code-challenge
 
 2. Navigate to the project directory:
 
