@@ -18,7 +18,7 @@ git clone https://github.com/Nehemakinya/restaurant-pizza-api.git
 
 2. Navigate to the project directory:
 
-cd restaurant-pizza-api
+cd phase4-wk1-code-challenge
 
 3. Create a virtual environment and activate it:
 
