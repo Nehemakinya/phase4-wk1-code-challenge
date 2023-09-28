@@ -12,6 +12,9 @@ class Restaurant(db.Model):
     name = db.Column(db.String(50), unique=True, nullable=False)
     address = db.Column(db.String(100), nullable=False)
 
+    # Define the relationship to RestaurantPizza
+    restaurant_pizzas = db.relationship('RestaurantPizza', backref='restaurant', cascade='all, delete-orphan')
+
     def __init__(self, name, address):
         self.name = name
         self.address = address
@@ -23,6 +26,9 @@ class Pizza(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     ingredients = db.Column(db.String(255), nullable=False)
+
+    # Define the relationship to RestaurantPizza
+    restaurant_pizzas = db.relationship('RestaurantPizza', backref='pizza', cascade='all, delete-orphan')
 
     def __init__(self, name, ingredients):
         self.name = name
@@ -36,9 +42,6 @@ class RestaurantPizza(db.Model):
     price = db.Column(db.Float, nullable=False)
     pizza_id = db.Column(db.Integer, db.ForeignKey('pizzas.id'), nullable=False)
     restaurant_id = db.Column(db.Integer, db.ForeignKey('restaurants.id'), nullable=False)
-
-    pizza = db.relationship('Pizza', backref=db.backref('restaurant_pizzas', lazy=True))
-    restaurant = db.relationship('Restaurant', backref=db.backref('restaurant_pizzas', lazy=True))
 
     def __init__(self, price, pizza_id, restaurant_id):
         self.price = price

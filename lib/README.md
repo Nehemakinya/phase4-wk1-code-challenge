@@ -64,5 +64,8 @@ python seed.py
 # Acknowledgments
 This project was created as a simple example of building a RESTful API with Flask and SQLAlchemy.
 
+# License
+This project is licensed under the MIT License.
+
 # Author 
 Nehema Kinya.

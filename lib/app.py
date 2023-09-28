@@ -1,7 +1,7 @@
-from flask import Flask,jsonify, request
+from flask import Flask, jsonify, request
 from models import db, migrate, Restaurant, Pizza, RestaurantPizza
 from wtforms.validators import ValidationError
- 
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///RestaurantAPI.db'
 db.init_app(app)
@@ -21,20 +21,25 @@ def get_restaurants():
 def get_restaurant(id):
     restaurant = Restaurant.query.get(id)
     if restaurant:
-        pizzas = [{"id": rp.pizza.id, "name": rp.pizza.name, "ingredients": rp.pizza.ingredients} for rp in restaurant.restaurant_pizzas]
+        pizzas = [{"id": restaurant_pizza.pizza.id, "name": restaurant_pizza.pizza.name, "ingredients": restaurant_pizza.pizza.ingredients} for restaurant_pizza in restaurant.restaurant_pizzas]
         result = {"id": restaurant.id, "name": restaurant.name, "address": restaurant.address, "pizzas": pizzas}
         return jsonify(result)
     return jsonify({"error": "Restaurant not found"}), 404
+
 
 # DELETE a restaurant by ID
 @app.route('/restaurants/<int:id>', methods=['DELETE'])
 def delete_restaurant(id):
     restaurant = Restaurant.query.get(id)
     if restaurant:
+        # Cascade delete to related RestaurantPizza records
+        for restaurant_pizza in restaurant.restaurant_pizzas:
+            db.session.delete(restaurant_pizza)
         db.session.delete(restaurant)
         db.session.commit()
         return '', 204
     return jsonify({"error": "Restaurant not found"}), 404
+
 
 # GET all pizzas
 @app.route('/pizzas', methods=['GET'])
